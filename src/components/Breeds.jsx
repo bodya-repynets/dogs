@@ -3,18 +3,58 @@ import { useGlobalContext } from "../context";
 const Breeds = () => {
   const { showBreeds, setOpenModal, setSelectedBreed } = useGlobalContext();
   return (
-    <Stack direction={'row'} flexWrap={'wrap'} gap={'50px'} justifyContent={'center'} padding={'50px'}>
+    <Stack
+      flexDirection={"row"}
+      width={"100%"}
+      flexWrap={"wrap"}
+      justifyContent={"center"}
+      gap={"20px"}
+      padding={"40px"}
+    >
       {showBreeds.map((breed) => {
         return (
-          <Stack key={breed.id} sx={{backgroundColor: 'rgba(0,0,0,0.2)'}} overflow={'hidden'} paddingBottom={'20px'} spacing={'20px'} borderRadius={'20px'} width={'300px'} >
-            <Button sx={{padding: '0px'}} onClick={()=>{
-              setSelectedBreed(breed);
-              setOpenModal(true)
-            }}>
-            <img width={'300px'} height={'200px'} src={breed.img} alt={breed.breed}/>
-
+          <Stack
+            key={breed.id}
+            sx={{
+              backgroundColor: "rgba(255,255,255,0.7)",
+              height: "250px",
+            }}
+            borderRadius={"10px"}
+            overflow={"hidden"}
+            position={"relative"}
+          >
+            <Button
+              sx={{ padding: 0, display: "flex", flexDirection: "column" }}
+              onClick={() => {
+                setSelectedBreed(breed);
+                setOpenModal(true);
+              }}
+            >
+              <img
+                height={"200px"}
+                className="image"
+                src={breed.img}
+                alt={breed.breed}
+              />
+              <Typography
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  color: "#1e293b",
+                  alignItems: "center",
+                  fontSize: "14px",
+                  height: "50px",
+                  paddingX: "10px",
+                  textAlign: "center",
+                  fontWeight: "600",
+                  letterSpacing: "3px",
+                  width: "100%",
+                  fontStyle: "italic",
+                }}
+              >
+                {breed.breed}
+              </Typography>
             </Button>
-            <Typography sx={{fontSize: '18px', textAlign: 'center', fontWeight: '500', letterSpacing: '3px', padding: '10px',}}>{breed.breed}</Typography>
           </Stack>
         );
       })}
